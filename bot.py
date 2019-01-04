@@ -6,7 +6,7 @@ import time # Librería para hacer que el programa que controla el bot no se aca
  
 # Aqui definiremos aparte del Token, por ejemplo los ids de los grupos y pondríamos grupo= -XXXXX 
   
-TOKEN = '164525128:AAHDczWw7zLUI4GNY6r5qACXEl2InQH0x4g' # Nuestro token del bot.
+TOKEN =  # Nuestro token del bot.
  
 AYUDA = 'Puedes utilizar los siguientes comandos : \n\n/ayuda - Guia para utilizar el bot. \n/info - Informacion De interes \n/hola - Saludo de Bot: \n/Constantebot \n\n'
 
