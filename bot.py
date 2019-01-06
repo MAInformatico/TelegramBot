@@ -1,13 +1,14 @@
-# -*- coding: utf-8 -*- 
-import telebot
-from telebot import types
-import time
-  
-TOKEN = " " # You must to put the token bot here.
-bot = telebot.TeleBot(token) # Init our bot
+# -*- coding:utf-8 -*-
+import telebot # Añadir las bibliotecas necesarias
+from telebot import types # Tipos para la API del bot.
+import time # Librería para hacer que el programa que controla el bot no se acabe.
+
+token="715031782:AAFzGEGxSg-p1SMu9IynIxFddgVYOum7AwQ" # put the token of our bot
+bot = telebot.TeleBot(token) # Inicializar el bot
 
 @bot.message_handler(commands=['website'])
 def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
+
 
 @bot.message_handler(commands=['video'])
 def handle_video(message): bot.reply_to(message, "https://www.youtube.com/watch?v=EDbCZaAHEXI")
@@ -29,6 +30,15 @@ def command_text_hi(m):
 def command_text_salut(m): 
     time.sleep(1) 
     bot.send_message(m.chat.id, "Salut! Ça va?") 
+
+
+@bot.message_handler(func=lambda message: message.text == "examen")
+ 
+def command_text_examen(m): 
+    time.sleep(1) 
+    bot.send_message(m.chat.id, "Te sobran huevos para aprobarlo, tio. ¡Vamos que se puede!") 
+
+
 
 
 bot.polling()
