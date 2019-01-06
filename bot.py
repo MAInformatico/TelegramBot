@@ -3,7 +3,7 @@ import telebot # Añadir las bibliotecas necesarias
 from telebot import types # Tipos para la API del bot.
 import time # Librería para hacer que el programa que controla el bot no se acabe.
 
-token="715031782:AAFzGEGxSg-p1SMu9IynIxFddgVYOum7AwQ" # put the token of our bot
+token=" " # put the token of our bot
 bot = telebot.TeleBot(token) # Inicializar el bot
 
 @bot.message_handler(commands=['website'])
