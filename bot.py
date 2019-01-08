@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
-import telebot # Añadir las bibliotecas necesarias
-from telebot import types # Tipos para la API del bot.
-import time # Librería para hacer que el programa que controla el bot no se acabe.
+import telebot
+from telebot import types
+import time
 
-token=" " # put the token of our bot
+token="" # put the token of our bot
 bot = telebot.TeleBot(token) # Inicializar el bot
 
 @bot.message_handler(commands=['website'])
@@ -12,6 +12,10 @@ def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
 
 @bot.message_handler(commands=['video'])
 def handle_video(message): bot.reply_to(message, "https://www.youtube.com/watch?v=EDbCZaAHEXI")
+
+@bot.message_handler(commands=['tiempo'])
+def handle_frio(message): bot.reply_to(message, "https://www.eltiempo.es")
+
 
 @bot.message_handler(func=lambda message: message.text == "hola")
  
