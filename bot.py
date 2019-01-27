@@ -9,6 +9,11 @@ bot = telebot.TeleBot(token) # Inicializar el bot
 @bot.message_handler(commands=['website'])
 def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
 
+@bot.message_handler(commands=['web'])
+def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
+
+@bot.message_handler(commands=['blog'])
+def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
 
 @bot.message_handler(commands=['video'])
 def handle_video(message): bot.reply_to(message, "https://www.youtube.com/watch?v=EDbCZaAHEXI")
@@ -41,8 +46,6 @@ def command_text_salut(m):
 def command_text_examen(m): 
     time.sleep(1) 
     bot.send_message(m.chat.id, "Te sobran huevos para aprobarlo, tio. ¡Vamos que se puede!") 
-
-
 
 
 bot.polling()
