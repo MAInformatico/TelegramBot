@@ -1,51 +1,31 @@
 # -*- coding:utf-8 -*-
-import telebot
-from telebot import types
-import time
+from telegram.ext import Updater, CommandHandler, MessageHandler
+import requests
+import re
 
-token="" # put the token of our bot
-bot = telebot.TeleBot(token) # Inicializar el bot
+def morning(bot,update):
+    chat_id = update.message.chat_id
+    bot.send_message(chat_id=chat_id, text="Morning, dude. There are your links: https://hackernoon.com/" + "\n" + "https://hackaday.com/" + "\n" + "https://www.genbeta.com/" + "\n") 
 
-@bot.message_handler(commands=['website'])
-def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
+def hola(bot,update):
+    chat_id = update.message.chat_id
+    bot.send_message(chat_id=chat_id, text="Hola, ¿Qué tal estás?") 
 
-@bot.message_handler(commands=['web'])
-def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
-
-@bot.message_handler(commands=['blog'])
-def handle_start(message): bot.reply_to(message, "mainformatico.github.io")
-
-@bot.message_handler(commands=['video'])
-def handle_video(message): bot.reply_to(message, "https://www.youtube.com/watch?v=EDbCZaAHEXI")
-
-@bot.message_handler(commands=['tiempo'])
-def handle_frio(message): bot.reply_to(message, "https://www.eltiempo.es")
+def weather(bot,update):
+    chat_id = update.message.chat_id
+    bot.send_message(chat_id=chat_id, text="https://www.eltiempo.es")
 
 
-@bot.message_handler(func=lambda message: message.text == "hola")
- 
-def command_text_hola(m): 
-    time.sleep(1) 
-    bot.send_message(m.chat.id, "¿Qué te cuentas?") 
 
-@bot.message_handler(func=lambda message: message.text == "hi")
- 
-def command_text_hi(m): 
-    time.sleep(1) 
-    bot.send_message(m.chat.id, "What's up, dude?") 
+def main():
 
-@bot.message_handler(func=lambda message: message.text == "salut")
- 
-def command_text_salut(m): 
-    time.sleep(1) 
-    bot.send_message(m.chat.id, "Salut! Ça va?") 
+    updater = Updater('<insert your bot token>')
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler('morning',morning))    
+    dp.add_handler(CommandHandler('hola',hola))
+    dp.add_handler(CommandHandler('weather',weather))
+    updater.start_polling()
+    updater.idle()
 
-
-@bot.message_handler(func=lambda message: message.text == "examen")
- 
-def command_text_examen(m): 
-    time.sleep(1) 
-    bot.send_message(m.chat.id, "Te sobran huevos para aprobarlo, tio. ¡Vamos que se puede!") 
-
-
-bot.polling()
+if __name__ == '__main__':
+    main()
