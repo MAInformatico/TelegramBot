@@ -1,3 +1,4 @@
-__pycache__
-auth.py
-/venv/*
+__pycache__/*
+venv/*
+.vscode/*
+example.py
