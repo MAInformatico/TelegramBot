@@ -1,31 +1,42 @@
 # -*- coding:utf-8 -*-
-from telegram.ext import Updater, CommandHandler, MessageHandler
-import requests
-import re
-import auth
+import logging
 
-def morning(bot,update):
-    chat_id = update.message.chat_id
-    bot.send_message(chat_id=chat_id, text="Morning, dude. There are your links: https://hackernoon.com/" + "\n" + "https://hackaday.com/" + "\n" + "https://news.ycombinator.com/" + "\n") 
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-def hola(bot,update):
-    chat_id = update.message.chat_id
-    bot.send_message(chat_id=chat_id, text="Hola, ¿Qué tal estás?") 
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
 
-def weather(bot,update):
-    chat_id = update.message.chat_id
-    bot.send_message(chat_id=chat_id, text="https://www.eltiempo.es")
+logger = logging.getLogger(__name__)
 
+
+def error(update, context):
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+def morning(update, context):
+    update.message.reply_text("Morning, dude. There are your links: https://hackernoon.com/" + "\n" + "https://hackaday.com/" + "\n" + "https://news.ycombinator.com/" + "\n") 
+
+def hola(update, context):
+    update.message.reply_text('Hola, ¿Qué tal estás?')
+
+def weather(update, context):
+    update.message.reply_text("https://www.eltiempo.es")
 
 
 def main():
-    updater = Updater('<insert your token here>')
+    updater = Updater("Your_token_here", use_context=True)
+
     dp = updater.dispatcher
-    dp.add_handler(CommandHandler('morning',morning))    
-    dp.add_handler(CommandHandler('hola',hola))
-    dp.add_handler(CommandHandler('weather',weather))
+
+    dp.add_handler(CommandHandler("hola", hola))
+    dp.add_handler(CommandHandler("morning", morning))
+    dp.add_handler(CommandHandler("weather", weather))
+
+    dp.add_error_handler(error)
+
     updater.start_polling()
     updater.idle()
+
 
 if __name__ == '__main__':
     main()

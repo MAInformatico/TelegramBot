@@ -1,3 +1,5 @@
 __pycache__
 auth.py
+/.vscode/*
 /venv/*
+example.py
