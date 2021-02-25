@@ -1,7 +1,7 @@
-# -*- coding:utf-8 -*-
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from checker import *
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -22,15 +22,20 @@ def hola(update, context):
 def weather(update, context):
     update.message.reply_text("https://www.eltiempo.es")
 
+def temperature(update, context):
+    verify = checker()
+    update.message.reply_text(str(verify.getTemperature()))
+
 
 def main():
-    updater = Updater("Your_token_here", use_context=True)
+    updater = Updater("1061594945:AAHsQ0YbDOeehQzgyPvyB0-tn_5vZ4S9_K0", use_context=True)
 
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("hola", hola))
     dp.add_handler(CommandHandler("morning", morning))
     dp.add_handler(CommandHandler("weather", weather))
+    dp.add_handler(CommandHandler("temperature",temperature))
 
     dp.add_error_handler(error)
 

@@ -3,4 +3,5 @@ auth.py
 /.vscode/*
 /venv/*
 example.py
+*.txt
 token.txt
