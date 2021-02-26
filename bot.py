@@ -26,9 +26,13 @@ def temperature(update, context):
     verify = checker()
     update.message.reply_text(str(verify.getTemperature()))
 
+def hosts(update, context):
+    verify = checker()
+    update.message.reply_text(str(verify.getHosts()))
+
 
 def main():
-    updater = Updater("1061594945:AAHsQ0YbDOeehQzgyPvyB0-tn_5vZ4S9_K0", use_context=True)
+    updater = Updater("<your_token_here>", use_context=True)
 
     dp = updater.dispatcher
 
@@ -36,6 +40,7 @@ def main():
     dp.add_handler(CommandHandler("morning", morning))
     dp.add_handler(CommandHandler("weather", weather))
     dp.add_handler(CommandHandler("temperature",temperature))
+    dp.add_handler(CommandHandler("hosts",hosts))
 
     dp.add_error_handler(error)
 
