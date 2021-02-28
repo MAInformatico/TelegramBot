@@ -3,5 +3,9 @@ auth.py
 /.vscode/*
 /venv/*
 example.py
+testeo.py
+botTest.py
+test.py
 *.txt
 token.txt
+*py.swp
