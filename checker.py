@@ -47,7 +47,10 @@ class checker:
         for i in range(len(keylist)):
             hostsList.append(self.getHostname(keylist[i],"dictionary.txt")) #where dictionary.txt is the file that contains my "DNS file" Please, create your own file dictionary.txt
 
+        if "None" in hostsList:
+            print("Unknown device")
+            return "There is an unknown devices!!"
         #print(hostsList)
-        return hostsList
-
+        else:
+            return hostsList
 

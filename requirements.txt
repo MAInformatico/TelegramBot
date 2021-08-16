@@ -4,19 +4,30 @@ blinker==1.4
 certifi==2020.12.5
 chardet==4.0.0
 dnspython==1.16.0
+<<<<<<< HEAD
+ephem==4.0.0.2
+eventlet==0.30.2
+falcon==3.0.0
+=======
 eventlet==0.31.0
 falcon==2.0.0
+>>>>>>> 45b788592cbd617b2a8571645d42e8a8f0ec1801
 greenlet==1.0.0
-gunicorn==20.0.4
-idna==2.10
-mongoengine==0.22.1
+gunicorn==20.1.0
+idna==3.1
+mongoengine==0.23.0
+pyephem==9.99
 pymongo==3.11.3
-python-telegram-bot==13.3
+python-telegram-bot==13.4.1
 pytz==2021.1
 requests==2.25.1
 six==1.15.0
 telegram==0.0.1
 tornado==6.1
 tzlocal==2.1
+<<<<<<< HEAD
+urllib3==1.26.4
+=======
 urllib3==1.26.5
+>>>>>>> 45b788592cbd617b2a8571645d42e8a8f0ec1801
 Werkzeug==1.0.1

@@ -6,6 +6,7 @@ example.py
 testeo.py
 botTest.py
 test.py
+.directory
 *.txt
 token.txt
 *py.swp

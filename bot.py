@@ -2,6 +2,7 @@ import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from checker import *
+from suntime import *
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -33,8 +34,17 @@ def hosts(update, context):
     verify = checker()
     update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.getHosts()))
 
+def sunrise(update, context):
+    verify = getSunrise()
+    update.message.reply_text("Sunrise:\n" + str(verify)) 
+
+def sunset(update, context):
+    verify = getSunset()
+    update.message.reply_text("Sunset:\n" + str(verify))
+
+
 def main():
-    updater = Updater("<Insert_your_token_here>", use_context=True)
+    updater = Updater("put_your_own_token_here", use_context=True)
 
     dp = updater.dispatcher
 
@@ -44,6 +54,8 @@ def main():
     dp.add_handler(CommandHandler("temperature",temperature))
     dp.add_handler(CommandHandler("hosts",hosts))
     dp.add_handler(CommandHandler("hello",hello))
+    dp.add_handler(CommandHandler("sunrise",sunrise))
+    dp.add_handler(CommandHandler("sunset",sunset))
 
     dp.add_error_handler(error)
 
