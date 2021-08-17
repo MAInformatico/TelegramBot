@@ -36,11 +36,11 @@ def hosts(update, context):
 
 def sunrise(update, context):
     verify = getSunrise()
-    update.message.reply_text("Sunrise:\n" + str(verify)) 
+    update.message.reply_text("Sunrise (UTC time):\n" + str(verify)) 
 
 def sunset(update, context):
     verify = getSunset()
-    update.message.reply_text("Sunset:\n" + str(verify))
+    update.message.reply_text("Sunset (UTC time):\n" + str(verify))
 
 
 def main():
