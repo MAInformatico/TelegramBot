@@ -30,7 +30,11 @@ def temperature(update, context):
 def hosts(update, context):
     verify = checker()
     update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.getHosts()))
-
+    
+def showHelp(update, context):
+    update.message.reply_text("You can use these commands: \n" + "/temperature to check server's temperature\n" + "/hosts shows the current hosts connected into your LAN\n")
+   
+    
 def main():
     updater = Updater("put_your_own_token_here", use_context=True)
 
@@ -41,6 +45,7 @@ def main():
     dp.add_handler(CommandHandler("temperature",temperature))
     dp.add_handler(CommandHandler("hosts",hosts))
     dp.add_handler(CommandHandler("hello",hello))
+    dp.add_handler(CommandHandler("help",hello))
 
     dp.add_error_handler(error)
 
