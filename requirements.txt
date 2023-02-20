@@ -27,4 +27,4 @@ tzlocal==2.1
 <<<<<<< HEAD
 urllib3==1.26.5
 >>>>>>> 45b788592cbd617b2a8571645d42e8a8f0ec1801
-Werkzeug==1.0.1
+Werkzeug==2.2.3
