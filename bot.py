@@ -1,6 +1,6 @@
 import logging
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters
 from checker import *
 from suntime import *
 
@@ -45,7 +45,7 @@ def main():
     dp.add_handler(CommandHandler("temperature",temperature))
     dp.add_handler(CommandHandler("hosts",hosts))
     dp.add_handler(CommandHandler("hello",hello))
-    dp.add_handler(CommandHandler("help",hello))
+    dp.add_handler(CommandHandler("help",showHelp))
 
     dp.add_error_handler(error)
 
