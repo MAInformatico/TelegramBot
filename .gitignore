@@ -10,3 +10,4 @@ test.py
 *.txt
 token.txt
 *py.swp
+/entornovirtual/*

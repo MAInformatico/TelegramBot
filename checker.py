@@ -2,7 +2,7 @@ import re
 
 class checker:
 
-    def getIPs(self,thefile): #read all the IP from thefile parameter. Return a list containing the IPs
+    def get_ips(self,thefile): #read all the IP from thefile parameter. Return a list containing the IPs
         logfile = list(open(str(thefile), 'r').read().split('\n'))
         newip = []
         for entry in logfile:
@@ -11,7 +11,7 @@ class checker:
                 newip.append(ip)
         return newip
 
-    def readFile(self,thefile): #Return a dictionary after read IP and hostname form a file and store them in the mentioned dictionary with key: IP and value: hostname.
+    def read_file(self,thefile): #Return a dictionary after read IP and hostname form a file and store them in the mentioned dictionary with key: IP and value: hostname.
         with open(str(thefile),'r') as f: #format file: "IP<space>hostname"
             auxlist = []
             ip_not_found = True
@@ -26,31 +26,27 @@ class checker:
 
         return dictionary
 
-    def getHostname(self, IP,thefile): #given a IP, return the hostname
+    def get_hostname(self, ip,thefile): #given a IP, return the hostname
         data = self.readFile(thefile)
-        return data.get(IP)
+        return data.get(ip)
 
 
-    def getTemperature(self):
+    def get_temperature(self):
         with open("temperature.txt", "r") as f: #verify path
             value = f.read()
 
         return value
 
-    def cleanFile(self,stream):
-       pass 
-
-
-    def getHosts(self):
-        hostsList = []
+    def get_hosts(self):
+        hosts_list = []
         keylist = self.getIPs("hosts.txt") #get IPs from hosts.txt (more details about it on: https://github.com/MAInformatico/Raspberry-Pi-Monitoring-Network/tree/master/RaspberryPiFiles )
         for i in range(len(keylist)):
-            hostsList.append(self.getHostname(keylist[i],"dictionary.txt")) #where dictionary.txt is the file that contains my "DNS file" Please, create your own file dictionary.txt
+            hosts_list.append(self.getHostname(keylist[i],"dictionary.txt")) #where dictionary.txt is the file that contains my "DNS file" Please, create your own file dictionary.txt
 
-        if "None" in hostsList:
+        if "None" in hosts_list:
             print("Unknown device")
             return "There is an unknown devices!!"
         #print(hostsList)
         else:
-            return hostsList
+            return hosts_list
 

@@ -1,8 +1,7 @@
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, filters
-from checker import *
-from suntime import *
+from .checker import checker
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -25,13 +24,13 @@ def weather(update, context):
 
 def temperature(update, context):
     verify = checker()
-    update.message.reply_text("This is the current temperature of the server:\n" + str(verify.getTemperature()))
+    update.message.reply_text("This is the current temperature of the server:\n" + str(verify.get_temperature()))
 
 def hosts(update, context):
     verify = checker()
-    update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.getHosts()))
+    update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.get_hosts()))
     
-def showHelp(update, context):
+def show_help(update, context):
     update.message.reply_text("You can use these commands: \n" + "/temperature to check server's temperature\n" + "/hosts shows the current hosts connected into your LAN\n")
    
     
@@ -45,7 +44,7 @@ def main():
     dp.add_handler(CommandHandler("temperature",temperature))
     dp.add_handler(CommandHandler("hosts",hosts))
     dp.add_handler(CommandHandler("hello",hello))
-    dp.add_handler(CommandHandler("help",showHelp))
+    dp.add_handler(CommandHandler("help",show_help))
 
     dp.add_error_handler(error)
 
