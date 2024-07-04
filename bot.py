@@ -1,10 +1,7 @@
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, filters
-<<<<<<< HEAD
-=======
 from checker import checker
->>>>>>> 3083944 (updating)
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -35,10 +32,6 @@ def main():
 
     dp.add_handler(CommandHandler("temperature",temperature))
     dp.add_handler(CommandHandler("hosts",hosts))
-<<<<<<< HEAD
-    dp.add_handler(CommandHandler("hello",hello))
-=======
->>>>>>> 3083944 (updating)
     dp.add_handler(CommandHandler("help",show_help))
 
     dp.add_error_handler(error)
