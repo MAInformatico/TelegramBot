@@ -9,5 +9,6 @@ test.py
 .directory
 *.txt
 token.txt
+dictionary.txt
 *py.swp
 /entornovirtual/*

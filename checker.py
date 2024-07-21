@@ -27,7 +27,7 @@ class checker:
         return dictionary
 
     def get_hostname(self, ip,thefile): #given a IP, return the hostname
-        data = self.readFile(thefile)
+        data = self.read_file(thefile)
         return data.get(ip)
 
 
@@ -39,9 +39,9 @@ class checker:
 
     def get_hosts(self):
         hosts_list = []
-        keylist = self.getIPs("hosts.txt") #get IPs from hosts.txt (more details about it on: https://github.com/MAInformatico/Raspberry-Pi-Monitoring-Network/tree/master/RaspberryPiFiles )
+        keylist = self.get_ips("hosts.txt") #get IPs from hosts.txt (more details about it on: https://github.com/MAInformatico/Raspberry-Pi-Monitoring-Network/tree/master/RaspberryPiFiles )
         for i in range(len(keylist)):
-            hosts_list.append(self.getHostname(keylist[i],"dictionary.txt")) #where dictionary.txt is the file that contains my "DNS file" Please, create your own file dictionary.txt
+            hosts_list.append(self.get_hostname(keylist[i],"dictionary.txt")) #where dictionary.txt is the file that contains my "DNS file" Please, create your own file dictionary.txt
 
         if "None" in hosts_list:
             print("Unknown device")
@@ -49,4 +49,3 @@ class checker:
         #print(hostsList)
         else:
             return hosts_list
-

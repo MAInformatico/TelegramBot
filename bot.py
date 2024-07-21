@@ -1,43 +1,44 @@
 import logging
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters
 from checker import checker
+from telegram import ForceReply, Update
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
-# Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
+
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
+
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 
 logger = logging.getLogger(__name__)
 
-
-def error(update, context):
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
-def temperature(update, context):
+async def temperature(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     verify = checker()
-    update.message.reply_text("This is the current temperature of the server:\n" + str(verify.get_temperature()))
+    await update.message.reply_text("This is the current temperature of the server:\n" + str(verify.get_temperature()))
 
-def hosts(update, context):
+async def hosts(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     verify = checker()
-    update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.get_hosts()))
+    await update.message.reply_text("These are the current devices connected into the LAN:\n " + str(verify.get_hosts()))
     
-def show_help(update, context):
-    update.message.reply_text("You can use these commands: \n" + "/temperature to check server's temperature\n" + "/hosts shows the current hosts connected into your LAN\n")
+async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text("You can use these commands: \n" + "/temperature to check server's temperature\n" + "/hosts shows the current hosts connected into your LAN\n")
    
     
-def main():
-    updater = Updater("your API key here", use_context=True)
+def main() -> None:
+    application  = Application.builder().token("your_token_here").build()
 
-    dp = updater.dispatcher
+    application.add_handler(CommandHandler("temperature",temperature))
+    application.add_handler(CommandHandler("hosts",hosts))
+    application.add_handler(CommandHandler("help",help))
 
-    dp.add_handler(CommandHandler("temperature",temperature))
-    dp.add_handler(CommandHandler("hosts",hosts))
-    dp.add_handler(CommandHandler("help",show_help))
 
-    dp.add_error_handler(error)
-
-    updater.start_polling()
-    updater.idle()
+    #application.run_polling()
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == '__main__':

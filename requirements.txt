@@ -11,7 +11,7 @@ idna==3.7
 latest==0.6.0
 pyephem==9.99
 pyparsing==3.1.2
-python-telegram-bot==21.3
+python-telegram-bot==21.4
 pytz==2024.1
 PyYAML==6.0.1
 six==1.16.0
