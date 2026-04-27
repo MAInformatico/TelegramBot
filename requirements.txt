@@ -8,7 +8,6 @@ h11==0.16.0
 httpcore==1.0.5
 httpx==0.27.0
 idna==3.7
-latest==0.6.0
 pyephem==9.99
 pyparsing==3.1.2
 python-telegram-bot==21.4
